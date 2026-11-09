@@ -34,18 +34,16 @@ url = "https://download.pytorch.org/whl/rocm7.2"
 priority = "explicit"
 
 
-# PyTorch built for AMD ROCm (RX 9060 XT, gfx1200). Optional so teammates on NVIDIA or
-# CPU skip it (`poetry install --without rocm`) and install their own torch build.
+#PyTorch built for AMD ROCm (RX 9060 XT, gfx1200). Optional so teammates on NVIDIA or
+#CPU skip it (`poetry install --without rocm`) and install their own torch build.
 [tool.poetry.group.rocm]
 optional = true
 
 [tool.poetry.group.rocm.dependencies]
 torch = {version = "^2.14.1", source = "pytorch-rocm"}
 triton-rocm = {version = "^3.8.0", source = "pytorch-rocm"}
-#while i get the embeddings
+
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^7.4.0"
 pylint = "^4.1.3"
 
-#[tool.poetry.dependencies]
-#torch = {source = "PyPI"}

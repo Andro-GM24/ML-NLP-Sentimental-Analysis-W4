@@ -24,7 +24,7 @@ import torch.nn as nn
 # ── shared building block ─────────────────────────────────────────────────────
 
 def _block(in_dim: int, out_dim: int, dropout: float) -> nn.Sequential:
-    """FC → GELU → Dropout."""
+    """FC (x2)→ GELU → Dropout."""
     #test GELU
     return nn.Sequential(
         nn.Linear(in_dim, out_dim),
@@ -38,8 +38,9 @@ def _block(in_dim: int, out_dim: int, dropout: float) -> nn.Sequential:
 class Encoder(nn.Module):
     """768 → 256 → 128 → z_dim."""
 
-    def __init__(self, input_dim: int = 768, z_dim: int = 64, dropout: float = 0.2):
+    def __init__(self, input_dim: int = 768, z_dim: int = 64, dropout: float = 0.2,input_dropout: float = 0.2):
         super().__init__()
+        self.noise = nn.Dropout(input_dropout)
         self.net = nn.Sequential(
             _block(input_dim, 256, dropout),
             _block(256, 128, dropout),
@@ -47,6 +48,7 @@ class Encoder(nn.Module):
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        x = self.noise(x)  # Corrupción de entrada para Denoising AE
         return self.net(x)
 
 
@@ -86,10 +88,11 @@ class AE(nn.Module):
 # ── Variational Autoencoder ───────────────────────────────────────────────────
 
 class VAEEncoder(nn.Module):
-    """768 → 256 → 128 → (µ, log σ²)."""
+    """768 ->(Dropout)-> 256 -> 128 -> (µ, log σ²)."""
 
-    def __init__(self, input_dim: int = 768, z_dim: int = 64, dropout: float = 0.2):
+    def __init__(self, input_dim: int = 768, z_dim: int = 64, dropout: float = 0.2, input_dropout: float = 0.2):
         super().__init__()
+        self.noise = nn.Dropout(input_dropout)  
         self.shared = nn.Sequential(
             _block(input_dim, 256, dropout),
             _block(256, 128, dropout),
@@ -98,6 +101,7 @@ class VAEEncoder(nn.Module):
         self.fc_log_var = nn.Linear(128, z_dim)
 
     def forward(self, x: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        x       = self.noise(x)  
         h       = self.shared(x)
         mu      = self.fc_mu(h)
         log_var = self.fc_log_var(h)
@@ -107,9 +111,9 @@ class VAEEncoder(nn.Module):
 class VAE(nn.Module):
     """Variational autoencoder with reparameterisation trick."""
 
-    def __init__(self, input_dim: int = 768, z_dim: int = 64, dropout: float = 0.2):
+    def __init__(self, input_dim: int = 768, z_dim: int = 64, dropout: float = 0.2,input_dropout: float = 0.2):
         super().__init__()
-        self.encoder = VAEEncoder(input_dim, z_dim, dropout)
+        self.encoder = VAEEncoder(input_dim, z_dim, dropout, input_dropout)
         self.decoder = Decoder(z_dim, input_dim, dropout)
 
     def reparameterise(self, mu: torch.Tensor, log_var: torch.Tensor) -> torch.Tensor:
