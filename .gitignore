@@ -1,6 +1,28 @@
+## Data: silver and splits are copied from Workshop #1, embeddings are rebuilt
+## with src/extract_embeddings.py (see README)
 data/
+
+## Checkpoints: only the deliverables are versioned. model_best.pt (Workshop #2
+## RoBERTa, 499 MB) lives in the Workshop #2 repo via Git LFS; scaler.pkl is
+## refitted on train when missing.
+checkpoints/*
+!checkpoints/ae_best.pt
+!checkpoints/vae_best.pt
+!checkpoints/vae_all_classes.pt
+*.keras
+
+## Results produced with interim checkpoints, not for the report
+*_provisional.*
+
+## Python and tooling
 __pycache__/
 *.pyc
-checkpoints/
-*.pt
-*.keras
+.venv/
+.ipynb_checkpoints/
+.vscode/
+.DS_Store
+.env*
+
+## Claude Code config — local only
+.claude/
+CLAUDE.md
