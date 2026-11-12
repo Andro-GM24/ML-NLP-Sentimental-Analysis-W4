@@ -17,8 +17,11 @@ checkpoints/*
 ## Python and tooling
 __pycache__/
 *.pyc
+
+
+*.keras
 .venv/
-.ipynb_checkpoints/
+
 .vscode/
 .DS_Store
 .env*
