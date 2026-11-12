@@ -1,6 +1,6 @@
 data/
 __pycache__/
 *.pyc
-checkpoints/
-*.pt
+
+
 *.keras
