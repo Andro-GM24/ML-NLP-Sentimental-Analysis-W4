@@ -1,0 +1,42 @@
+{
+  "protocol": {
+    "corpus_sha256": "3c5eb28455a5156bbe337b3768fdd422a3311c1a91cb33214682bf80419e885c",
+    "normal": "positive",
+    "anomaly": "neutral or negative",
+    "alignment": "Full label vector and exact reconstructed split row order verified",
+    "model_selection": "Highest validation sentiment macro-F1, matching W1 ranking criterion",
+    "features": "Original W1 extract_features; learned transforms fitted on train only",
+    "random_forest": "Original hyperparameters; n_jobs=4 limits CPU parallelism",
+    "source_hashes": {
+      "preprocessing.py": "c9e7cd9a3c78cb428d5bc589263afb48fe13c0d465f78f174bee4947c2fb7cc6",
+      "features.py": "18b1d19704f4ba128654140ce52993312967755bc848fb54dff8f65c1a03abbf",
+      "eda.py": "f199fb067b09605c65936624c54547dd82f4b03f57a5a2f7363b3530007e7644",
+      "baselines.py": "156fc6655e1747fb8b78a2c345e9eb0a47ce14c0a53249901f25711a73b2d79e"
+    },
+    "versions": {
+      "numpy": "2.5.4",
+      "pandas": "3.1.1",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1"
+    }
+  },
+  "models": {
+    "majority": {
+      "validation_sentiment_macro_f1": 0.2953285137763842,
+      "test_auc_roc": 0.5
+    },
+    "logistic_regression": {
+      "validation_sentiment_macro_f1": 0.6251449928461711,
+      "test_auc_roc": 0.9231059770166709
+    },
+    "random_forest": {
+      "validation_sentiment_macro_f1": 0.301569292365876,
+      "test_auc_roc": 0.8948054073123315
+    },
+    "multinomial_nb": {
+      "validation_sentiment_macro_f1": 0.43178827509478107,
+      "test_auc_roc": 0.8400570454937814
+    }
+  },
+  "selected_by_validation": "logistic_regression"
+}

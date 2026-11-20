@@ -1,0 +1,9 @@
+{
+  "W1 logistic_regression": 0.9231059770166709,
+  "W1 majority": 0.5,
+  "W1 multinomial_nb": 0.8400570454937814,
+  "W1 random_forest": 0.8948054073123315,
+  "W2 RoBERTa": 0.9633921052039001,
+  "W4 AE MSE": 0.8788948186178478,
+  "W4 VAE beta=0.5 MSE+KL": 0.9054061113738205
+}

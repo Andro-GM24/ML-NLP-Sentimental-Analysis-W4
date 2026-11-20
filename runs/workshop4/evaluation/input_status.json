@@ -1,0 +1,14 @@
+{
+  "ready": true,
+  "files": {
+    "data/gold/embeddings_bert.npy": "available",
+    "data/gold/labels.npy": "available",
+    "data/gold/splits.json": "available",
+    "checkpoints/scaler.pkl": "available",
+    "checkpoints/ae_best.pt": "available",
+    "checkpoints/vae_b0.5_best.pt": "available",
+    "checkpoints/vae_b1.0_best.pt": "available",
+    "checkpoints/vae_b4.0_best.pt": "available"
+  },
+  "note": "Availability check only; arrays and checkpoints are validated during evaluation."
+}

@@ -1,0 +1,10 @@
+{
+  "model": "W2 RoBERTa (saved test probabilities)",
+  "source": "/home/xmara/Escritorio/Machine Learning/JulianCelisCreator-ML-NLP-Sentimental-Analysis-W2/runs/predictions_test_model_best.csv",
+  "source_sha256": "8277c13a4e5ca4c98e809f4864bb2a82c6afd6023b0fcab96da5deb5daf41c8b",
+  "test_rows": 6395,
+  "alignment": "row IDs and ground-truth labels verified against W4 test",
+  "score": "1 - P(positive)",
+  "test_auc_roc": 0.9633921052039001,
+  "w1_status": "Completed; see w1_baselines.json and all_workshops_auc.json"
+}

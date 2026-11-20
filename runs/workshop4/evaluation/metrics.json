@@ -1,0 +1,536 @@
+{
+  "protocol": {
+    "normal": "positive",
+    "anomaly": "neutral or negative",
+    "threshold": "quantile 0.95 of normal validation scores; strict >",
+    "kl": "mean across latent dimensions; score MSE + KL without beta weighting",
+    "reconstruction_space": "standardized 768-dimensional embeddings",
+    "best_vae": "vae_b0.5",
+    "selection": "lowest overall validation reconstruction MSE",
+    "training_provenance": "Expected positive-only checkpoints from train_ae.py; not independently verified",
+    "baseline_comparison": "Completed; see w1_baselines.json, baseline_comparison.json and all_workshops_auc.json",
+    "panel_test_row_ids": [
+      32342,
+      42279,
+      19697,
+      35455,
+      18003,
+      32518,
+      12145,
+      28357,
+      33695
+    ]
+  },
+  "checkpoints": {
+    "ae": {
+      "filename": "ae_best.pt",
+      "sha256": "0d4d08c0b369bc6c6ad47667401668c1276fed540a6c203d251e75de9bbd23b2",
+      "config": {
+        "z_dim": 32,
+        "dropout": 0.2,
+        "input_dropout": 0.2,
+        "epochs": 40,
+        "batch_size": 256,
+        "lr": 0.001,
+        "weight_decay": 1e-05,
+        "patience": 10,
+        "kl_anneal_epochs": 10,
+        "seed": 42,
+        "betas": [
+          0.5,
+          1.0,
+          4.0
+        ]
+      }
+    },
+    "vae_b0.5": {
+      "filename": "vae_b0.5_best.pt",
+      "sha256": "942b1bfe996c543f793131d2b3de008cf14ce217d7997e74d508180fd551df00",
+      "config": {
+        "z_dim": 32,
+        "dropout": 0.2,
+        "input_dropout": 0.2,
+        "epochs": 40,
+        "batch_size": 256,
+        "lr": 0.001,
+        "weight_decay": 1e-05,
+        "patience": 10,
+        "kl_anneal_epochs": 10,
+        "seed": 42,
+        "betas": [
+          0.5,
+          1.0,
+          4.0
+        ]
+      }
+    },
+    "vae_b1.0": {
+      "filename": "vae_b1.0_best.pt",
+      "sha256": "ca3c5beaf7c857253e2eceae099f23bf7b5a2025620f580aa5050d62ea6c30e9",
+      "config": {
+        "z_dim": 32,
+        "dropout": 0.2,
+        "input_dropout": 0.2,
+        "epochs": 40,
+        "batch_size": 256,
+        "lr": 0.001,
+        "weight_decay": 1e-05,
+        "patience": 10,
+        "kl_anneal_epochs": 10,
+        "seed": 42,
+        "betas": [
+          0.5,
+          1.0,
+          4.0
+        ]
+      }
+    },
+    "vae_b4.0": {
+      "filename": "vae_b4.0_best.pt",
+      "sha256": "94492eddae93e03c7d9720ae81d5cb074430631e6fd7b8c4ef7ffc5441463426",
+      "config": {
+        "z_dim": 32,
+        "dropout": 0.2,
+        "input_dropout": 0.2,
+        "epochs": 40,
+        "batch_size": 256,
+        "lr": 0.001,
+        "weight_decay": 1e-05,
+        "patience": 10,
+        "kl_anneal_epochs": 10,
+        "seed": 42,
+        "betas": [
+          0.5,
+          1.0,
+          4.0
+        ]
+      }
+    }
+  },
+  "environment": {
+    "torch": "2.9.1+cpu",
+    "numpy": "2.5.4",
+    "sklearn": "1.9.1",
+    "matplotlib": "3.11.2",
+    "joblib": "1.6.0"
+  },
+  "reconstruction": {
+    "ae": {
+      "validation": {
+        "overall": {
+          "count": 6395,
+          "mse_mean": 0.22896763682365417,
+          "mse_median": 0.18393659591674805,
+          "mse_p95": 0.5280556082725525,
+          "pearson_mean": 0.8606105446815491,
+          "pearson_undefined": 0
+        },
+        "by_class": {
+          "negative": {
+            "count": 543,
+            "mse_mean": 0.5052685141563416,
+            "mse_median": 0.4792410433292389,
+            "mse_p95": 0.8608444929122925,
+            "pearson_mean": 0.9043354392051697,
+            "pearson_undefined": 0
+          },
+          "neutral": {
+            "count": 766,
+            "mse_mean": 0.3237091898918152,
+            "mse_median": 0.2922726273536682,
+            "mse_p95": 0.6240173578262329,
+            "pearson_mean": 0.878187358379364,
+            "pearson_undefined": 0
+          },
+          "positive": {
+            "count": 5086,
+            "mse_mean": 0.1851997673511505,
+            "mse_median": 0.16420260071754456,
+            "mse_p95": 0.34470629692077637,
+            "pearson_mean": 0.853295087814331,
+            "pearson_undefined": 0
+          }
+        }
+      },
+      "test": {
+        "overall": {
+          "count": 6395,
+          "mse_mean": 0.23321537673473358,
+          "mse_median": 0.1857343167066574,
+          "mse_p95": 0.5421062111854553,
+          "pearson_mean": 0.8603114485740662,
+          "pearson_undefined": 0
+        },
+        "by_class": {
+          "negative": {
+            "count": 544,
+            "mse_mean": 0.5115752816200256,
+            "mse_median": 0.4747381806373596,
+            "mse_p95": 0.9302296042442322,
+            "pearson_mean": 0.900451123714447,
+            "pearson_undefined": 0
+          },
+          "neutral": {
+            "count": 766,
+            "mse_mean": 0.33559033274650574,
+            "mse_median": 0.30696797370910645,
+            "mse_p95": 0.6328796744346619,
+            "pearson_mean": 0.8767040371894836,
+            "pearson_undefined": 0
+          },
+          "positive": {
+            "count": 5085,
+            "mse_mean": 0.188014417886734,
+            "mse_median": 0.16561393439769745,
+            "mse_p95": 0.3572767376899719,
+            "pearson_mean": 0.8535478711128235,
+            "pearson_undefined": 0
+          }
+        }
+      }
+    },
+    "vae_b0.5": {
+      "validation": {
+        "overall": {
+          "count": 6395,
+          "mse_mean": 0.3735482096672058,
+          "mse_median": 0.3155277371406555,
+          "mse_p95": 0.7892351150512695,
+          "pearson_mean": 0.7435631155967712,
+          "pearson_undefined": 0
+        },
+        "by_class": {
+          "negative": {
+            "count": 543,
+            "mse_mean": 0.7460939884185791,
+            "mse_median": 0.7008225321769714,
+            "mse_p95": 1.2821004390716553,
+            "pearson_mean": 0.8650767803192139,
+            "pearson_undefined": 0
+          },
+          "neutral": {
+            "count": 766,
+            "mse_mean": 0.4776528477668762,
+            "mse_median": 0.43164557218551636,
+            "mse_p95": 0.8524078726768494,
+            "pearson_mean": 0.8079285621643066,
+            "pearson_undefined": 0
+          },
+          "positive": {
+            "count": 5086,
+            "mse_mean": 0.3180947005748749,
+            "mse_median": 0.28919893503189087,
+            "mse_p95": 0.576985239982605,
+            "pearson_mean": 0.7208958268165588,
+            "pearson_undefined": 0
+          }
+        }
+      },
+      "test": {
+        "overall": {
+          "count": 6395,
+          "mse_mean": 0.38049909472465515,
+          "mse_median": 0.32069751620292664,
+          "mse_p95": 0.8039749264717102,
+          "pearson_mean": 0.7416643500328064,
+          "pearson_undefined": 0
+        },
+        "by_class": {
+          "negative": {
+            "count": 544,
+            "mse_mean": 0.7536056041717529,
+            "mse_median": 0.6881930828094482,
+            "mse_p95": 1.3543238639831543,
+            "pearson_mean": 0.858263373374939,
+            "pearson_undefined": 0
+          },
+          "neutral": {
+            "count": 766,
+            "mse_mean": 0.4954589307308197,
+            "mse_median": 0.4570859372615814,
+            "mse_p95": 0.9002017974853516,
+            "pearson_mean": 0.8028148412704468,
+            "pearson_undefined": 0
+          },
+          "positive": {
+            "count": 5085,
+            "mse_mean": 0.3232662081718445,
+            "mse_median": 0.29160699248313904,
+            "mse_p95": 0.598655104637146,
+            "pearson_mean": 0.7199788093566895,
+            "pearson_undefined": 0
+          }
+        }
+      }
+    },
+    "vae_b1.0": {
+      "validation": {
+        "overall": {
+          "count": 6395,
+          "mse_mean": 0.3907976448535919,
+          "mse_median": 0.33646905422210693,
+          "mse_p95": 0.798966109752655,
+          "pearson_mean": 0.722653329372406,
+          "pearson_undefined": 0
+        },
+        "by_class": {
+          "negative": {
+            "count": 543,
+            "mse_mean": 0.7191941142082214,
+            "mse_median": 0.6886475086212158,
+            "mse_p95": 1.2028170824050903,
+            "pearson_mean": 0.8596811890602112,
+            "pearson_undefined": 0
+          },
+          "neutral": {
+            "count": 766,
+            "mse_mean": 0.49120503664016724,
+            "mse_median": 0.4501306712627411,
+            "mse_p95": 0.87453693151474,
+            "pearson_mean": 0.7982937693595886,
+            "pearson_undefined": 0
+          },
+          "positive": {
+            "count": 5086,
+            "mse_mean": 0.34061452746391296,
+            "mse_median": 0.3090631663799286,
+            "mse_p95": 0.6169206500053406,
+            "pearson_mean": 0.6966316103935242,
+            "pearson_undefined": 0
+          }
+        }
+      },
+      "test": {
+        "overall": {
+          "count": 6395,
+          "mse_mean": 0.39749875664711,
+          "mse_median": 0.34140467643737793,
+          "mse_p95": 0.798224925994873,
+          "pearson_mean": 0.7210552096366882,
+          "pearson_undefined": 0
+        },
+        "by_class": {
+          "negative": {
+            "count": 544,
+            "mse_mean": 0.7294231653213501,
+            "mse_median": 0.6800346374511719,
+            "mse_p95": 1.2672805786132812,
+            "pearson_mean": 0.8528501391410828,
+            "pearson_undefined": 0
+          },
+          "neutral": {
+            "count": 766,
+            "mse_mean": 0.5081267356872559,
+            "mse_median": 0.47506439685821533,
+            "mse_p95": 0.8794351816177368,
+            "pearson_mean": 0.7915928959846497,
+            "pearson_undefined": 0
+          },
+          "positive": {
+            "count": 5085,
+            "mse_mean": 0.34532415866851807,
+            "mse_median": 0.31208163499832153,
+            "mse_p95": 0.6226029396057129,
+            "pearson_mean": 0.6963297724723816,
+            "pearson_undefined": 0
+          }
+        }
+      }
+    },
+    "vae_b4.0": {
+      "validation": {
+        "overall": {
+          "count": 6395,
+          "mse_mean": 0.4952087104320526,
+          "mse_median": 0.4145517349243164,
+          "mse_p95": 1.067201018333435,
+          "pearson_mean": 0.6459992527961731,
+          "pearson_undefined": 0
+        },
+        "by_class": {
+          "negative": {
+            "count": 543,
+            "mse_mean": 1.0208101272583008,
+            "mse_median": 0.9661455154418945,
+            "mse_p95": 1.757828712463379,
+            "pearson_mean": 0.803905189037323,
+            "pearson_undefined": 0
+          },
+          "neutral": {
+            "count": 766,
+            "mse_mean": 0.6217031478881836,
+            "mse_median": 0.5522429347038269,
+            "mse_p95": 1.1584540605545044,
+            "pearson_mean": 0.7457024455070496,
+            "pearson_undefined": 0
+          },
+          "positive": {
+            "count": 5086,
+            "mse_mean": 0.4200423061847687,
+            "mse_median": 0.38536810874938965,
+            "mse_p95": 0.7338637113571167,
+            "pearson_mean": 0.6141243577003479,
+            "pearson_undefined": 0
+          }
+        }
+      },
+      "test": {
+        "overall": {
+          "count": 6395,
+          "mse_mean": 0.502553403377533,
+          "mse_median": 0.42092666029930115,
+          "mse_p95": 1.078397274017334,
+          "pearson_mean": 0.6441534757614136,
+          "pearson_undefined": 0
+        },
+        "by_class": {
+          "negative": {
+            "count": 544,
+            "mse_mean": 1.020447850227356,
+            "mse_median": 0.9543676376342773,
+            "mse_p95": 1.8309026956558228,
+            "pearson_mean": 0.798215925693512,
+            "pearson_undefined": 0
+          },
+          "neutral": {
+            "count": 766,
+            "mse_mean": 0.6460906863212585,
+            "mse_median": 0.5720549821853638,
+            "mse_p95": 1.2068649530410767,
+            "pearson_mean": 0.738304853439331,
+            "pearson_undefined": 0
+          },
+          "positive": {
+            "count": 5085,
+            "mse_mean": 0.4255260229110718,
+            "mse_median": 0.3877148926258087,
+            "mse_p95": 0.7469043731689453,
+            "pearson_mean": 0.6134888529777527,
+            "pearson_undefined": 0
+          }
+        }
+      }
+    }
+  },
+  "anomaly": {
+    "ae/mse": {
+      "threshold": 0.34470629692077637,
+      "test_auc_roc": 0.8788948186178478,
+      "precision": 0.7147030185004869,
+      "recall": 0.5603053435114503,
+      "f1": 0.6281557552417629,
+      "confusion_matrix_normal_anomaly": [
+        [
+          4792,
+          293
+        ],
+        [
+          576,
+          734
+        ]
+      ]
+    },
+    "vae_b0.5/mse": {
+      "threshold": 0.576985239982605,
+      "test_auc_roc": 0.8353685063838412,
+      "precision": 0.668552036199095,
+      "recall": 0.45114503816793894,
+      "f1": 0.5387420237010028,
+      "confusion_matrix_normal_anomaly": [
+        [
+          4792,
+          293
+        ],
+        [
+          719,
+          591
+        ]
+      ]
+    },
+    "vae_b0.5/mse_plus_kl": {
+      "threshold": 0.8530179262161255,
+      "test_auc_roc": 0.9054061113738205,
+      "precision": 0.7630878438331854,
+      "recall": 0.6564885496183206,
+      "f1": 0.7057858022158392,
+      "confusion_matrix_normal_anomaly": [
+        [
+          4818,
+          267
+        ],
+        [
+          450,
+          860
+        ]
+      ]
+    },
+    "vae_b1.0/mse": {
+      "threshold": 0.6169206500053406,
+      "test_auc_roc": 0.8233158443858979,
+      "precision": 0.6675,
+      "recall": 0.4076335877862595,
+      "f1": 0.5061611374407583,
+      "confusion_matrix_normal_anomaly": [
+        [
+          4819,
+          266
+        ],
+        [
+          776,
+          534
+        ]
+      ]
+    },
+    "vae_b1.0/mse_plus_kl": {
+      "threshold": 0.7864313125610352,
+      "test_auc_roc": 0.8946087504785067,
+      "precision": 0.7486583184257602,
+      "recall": 0.6389312977099236,
+      "f1": 0.6894563426688632,
+      "confusion_matrix_normal_anomaly": [
+        [
+          4804,
+          281
+        ],
+        [
+          473,
+          837
+        ]
+      ]
+    },
+    "vae_b4.0/mse": {
+      "threshold": 0.7338637113571167,
+      "test_auc_roc": 0.8315746057480841,
+      "precision": 0.6982182628062361,
+      "recall": 0.47862595419847326,
+      "f1": 0.5679347826086957,
+      "confusion_matrix_normal_anomaly": [
+        [
+          4814,
+          271
+        ],
+        [
+          683,
+          627
+        ]
+      ]
+    },
+    "vae_b4.0/mse_plus_kl": {
+      "threshold": 0.8040538430213928,
+      "test_auc_roc": 0.8774246961952157,
+      "precision": 0.7398058252427184,
+      "recall": 0.5816793893129771,
+      "f1": 0.6512820512820513,
+      "confusion_matrix_normal_anomaly": [
+        [
+          4817,
+          268
+        ],
+        [
+          548,
+          762
+        ]
+      ]
+    }
+  }
+}
